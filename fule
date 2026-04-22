@@ -1,1 +1,184 @@
-file
+example 1:
+ 
+Input:
+calc_brand := IIF[ValidateEmptyAttributes["Calc_Brand",IGNORESOURCEFLAG],"", AttributeValue["Calc_Brand"]];
+ 
+type_range := IIF[ValidateEmptyAttributes["Type_Range",IGNORESOURCEFLAG,"en_GB"],"",
+
+Concat[" ", AttributeValue["Type_Range","en_GB"]] 
+
+];
+ 
+material_type := IIF[ValidateEmptyAttributes["Material_type",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Material_type"]]
+
+];
+ 
+vdesc_colour := IIF[ValidateEmptyAttributes["Vdesc_Colour",IGNORESOURCEFLAG,"en_GB"],"",
+
+Concat[" ", AttributeValue["Vdesc_Colour","en_GB"]]
+
+];
+ 
+vdesc_colour :=IIF[material_type=" Wooden","",vdesc_colour];
+ 
+use_foldable := IIF[ValidateEmptyAttributes["Use_Foldable",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Use_Foldable"]]
+
+];
+ 
+use_foldable :=IIF[use_foldable=" Non-foldable","",use_foldable];
+ 
+number_of_seats := IIF[ValidateEmptyAttributes["Number_of_seats",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Number_of_seats"]," seater"]
+
+];
+ 
+tech_extendable := IIF[ValidateEmptyAttributes["Tech_Extendable",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Tech_Extendable"]]
+
+];
+ 
+tech_extendable := IIF[tech_extendable=" Non extendable","",tech_extendable];
+
+tech_extendable := IIF[tech_extendable=" Fixed","",tech_extendable];
+
+tech_extendable := IIF[tech_extendable=" Non-extendable","",tech_extendable];
+ 
+vdesc_product_shape := IIF[ValidateEmptyAttributes["Vdesc_Product shape",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Vdesc_Product shape"]]
+
+];
+ 
+core_product_type := IIF[ValidateEmptyAttributes["Core_Product type",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Core_Product type"]]
+
+];
+ 
+key_feature := IIF[ValidateEmptyAttributes["Key_Feature",IGNORESOURCEFLAG,"en_GB"],"",
+
+Concat["   ", AttributeValue["Key_Feature","en_GB"]," "]
+
+];
+ 
+Concat[calc_brand, type_range, material_type, vdesc_colour, use_foldable, number_of_seats, tech_extendable, vdesc_product_shape, core_product_type, key_feature]
+ 
+Output:
+{
+  "material_type": [
+    "material_type := IIF[ValidateEmptyAttributes[\"Material_type\",IGNORESOURCEFLAG],\"\",",
+    "Concat[\" \", AttributeValue[\"Material_type\"]]",
+    "vdesc_colour :=IIF[material_type=\" Wooden\",\"\",vdesc_colour];",
+    "Concat[calc_brand, type_range, material_type, vdesc_colour, use_foldable, number_of_seats, tech_extendable, vdesc_product_shape, core_product_type, key_feature]"
+  ],
+  "vdesc_colour": [
+    "vdesc_colour := IIF[ValidateEmptyAttributes[\"Vdesc_Colour\",IGNORESOURCEFLAG,\"en_GB\"],\"\",",
+    "Concat[\" \", AttributeValue[\"Vdesc_Colour\",\"en_GB\"]]",
+    "vdesc_colour :=IIF[material_type=\" Wooden\",\"\",vdesc_colour];",
+    "Concat[calc_brand, type_range, material_type, vdesc_colour, use_foldable, number_of_seats, tech_extendable, vdesc_product_shape, core_product_type, key_feature]"
+  ],
+  "use_foldable": [
+    "use_foldable := IIF[ValidateEmptyAttributes[\"Use_Foldable\",IGNORESOURCEFLAG],\"\",",
+    "Concat[\" \", AttributeValue[\"Use_Foldable\"]]",
+    "use_foldable :=IIF[use_foldable=\" Non-foldable\",\"\",use_foldable];",
+    "Concat[calc_brand, type_range, material_type, vdesc_colour, use_foldable, number_of_seats, tech_extendable, vdesc_product_shape, core_product_type, key_feature]"
+  ],
+  "tech_extendable": [
+    "tech_extendable := IIF[ValidateEmptyAttributes[\"Tech_Extendable\",IGNORESOURCEFLAG],\"\",",
+    "Concat[\" \", AttributeValue[\"Tech_Extendable\"]]",
+    "tech_extendable := IIF[tech_extendable=\" Non extendable\",\"\",tech_extendable];",
+    "tech_extendable := IIF[tech_extendable=\" Fixed\",\"\",tech_extendable];",
+    "tech_extendable := IIF[tech_extendable=\" Non-extendable\",\"\",tech_extendable];",
+    "Concat[calc_brand, type_range, material_type, vdesc_colour, use_foldable, number_of_seats, tech_extendable, vdesc_product_shape, core_product_type, key_feature]"
+  ]
+}
+ 
+Example 2:
+ 
+Input:
+ 
+calc_brand := IIF[ValidateEmptyAttributes["Calc_Brand",IGNORESOURCEFLAG],"", AttributeValue["Calc_Brand"] ]; type_range := IIF[ValidateEmptyAttributes["Type_Range",IGNORESOURCEFLAG,"en_GB"],"", Concat[" ", AttributeValue["Type_Range","en_GB"]] ]; tech_model_name_number0 := IIF[ValidateEmptyAttributes["Tech_Model name/number",IGNORESOURCEFLAG,"en_GB"],"", Concat[" ", AttributeValue["Tech_Model name/number","en_GB"]] ]; calc_width_cm_1 := IIF[ValidateEmptyAttributes["Calc_Width_(cm)",IGNORESOURCEFLAG],"", Concat[" ", Concat[AttributeValue["Calc_Width_(cm)"],"", Getuomvalue["Calc_Width_(cm)"]]] ]; tech_hob_type := IIF[ValidateEmptyAttributes["Tech_Hob type",IGNORESOURCEFLAG],"", Concat[" ", AttributeValue["Tech_Hob type"]] ]; core_product_type := IIF[ValidateEmptyAttributes["Core_Product type",IGNORESOURCEFLAG],"", Concat[" ", AttributeValue["Core_Product type"]] ]; core_product_type := IIF[built_in_extractor_fans =" Venting" AND core_product_type=" Ceramic hob", Replace[core_product_type," Ceramic hob"," Hob"],core_product_type]; key_feature := IIF[ValidateEmptyAttributes["Key_Feature",IGNORESOURCEFLAG,"en_GB"],"", Concat[" ", AttributeValue["Key_Feature","en_GB"]] ]; vdesc_colour := IIF[ValidateEmptyAttributes["Vdesc_Colour",IGNORESOURCEFLAG,"en_GB"],"", Concat[" - ", AttributeValue["Vdesc_Colour","en_GB"]] ]; Concat[calc_brand, type_range, tech_model_name_number0, calc_width_cm_1, tech_hob_type, built_in_extractor_fans, core_product_type, key_feature, vdesc_colour]
+ 
+Output:
+ 
+{
+  "core_product_type": [
+    "core_product_type := IIF[ValidateEmptyAttributes[\"Core_Product type\",IGNORESOURCEFLAG],\"\",",
+    "core_product_type := IIF[built_in_extractor_fans =\" Venting\" AND core_product_type=\" Ceramic hob\", Replace[core_product_type,\" Ceramic hob\",\" Hob\"],core_product_type];",
+    "Concat[calc_brand, type_range, tech_model_name_number0, calc_width_cm_1, tech_hob_type, built_in_extractor_fans, core_product_type, key_feature, vdesc_colour]"
+  ]
+}
+ 
+Example 3:
+ 
+Input: 
+ 
+calc_brand := IIF[ValidateEmptyAttributes["Calc_Brand",IGNORESOURCEFLAG],"",
+
+AttributeValue["Calc_Brand"]
+
+];
+ 
+type_range := IIF[ValidateEmptyAttributes["Type_Range",IGNORESOURCEFLAG,"en_GB"],"",
+
+Concat[" ", AttributeValue["Type_Range","en_GB"]]
+
+];
+ 
+vdesc_colour := IIF[ValidateEmptyAttributes["Vdesc_Colour",IGNORESOURCEFLAG,"en_GB"],"",
+
+Concat[" ", AttributeValue["Vdesc_Colour","en_GB"]]
+
+];
+ 
+vdesc_finish := IIF[ValidateEmptyAttributes["Vdesc_Finish",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Vdesc_Finish"]]
+
+];
+ 
+suitable_use_type := IIF[ValidateEmptyAttributes["Suitable_use_type",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Suitable_use_type"]]
+
+];
+ 
+suitable_use_type:= IIF[ suitable_use_type=" Doors, floors, furniture, skirting boards & windows","", suitable_use_type];
+ 
+paint_type := IIF[ValidateEmptyAttributes["Paint_type"],"",
+
+Concat[" ", AttributeValue["Paint_type"]]
+
+];
+ 
+core_product_type := IIF[ValidateEmptyAttributes["Core_Product type",IGNORESOURCEFLAG],"",
+
+Concat[" ", AttributeValue["Core_Product type"]]
+
+];
+ 
+calc_litre_capacity_l_0 := IIF[ValidateEmptyAttributes["Calc_Litre_capacity_(L)",IGNORESOURCEFLAG],"",
+
+Concat[", ", Concat[AttributeValue["Calc_Litre_capacity_(L)"],"", Getuomvalue["Calc_Litre_capacity_(L)"]]]
+
+];
+ 
+Concat[calc_brand, type_range, vdesc_colour, vdesc_finish, suitable_use_type, paint_type, core_product_type, calc_litre_capacity_l_0]
+ 
+Output:
+ 
+{
+  "suitable_use_type": [
+    "suitable_use_type := IIF[ValidateEmptyAttributes[\"Suitable_use_type\",IGNORESOURCEFLAG],\"\",",
+    "Concat[\" \", AttributeValue[\"Suitable_use_type\"]]",
+    "suitable_use_type:= IIF[ suitable_use_type=\" Doors, floors, furniture, skirting boards & windows\",\"\", suitable_use_type];",
+    "Concat[calc_brand, type_range, vdesc_colour, vdesc_finish, suitable_use_type, paint_type, core_product_type, calc_litre_capacity_l_0]"
+  ]
+}
+ 
